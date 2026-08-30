@@ -1,12 +1,12 @@
-import React from "react"
+import Container from "@/components/container";
+import React from "react";
 
-function Store(){
-
-    return(
-        <div>
-            <h1>Store</h1>
-        </div>
-    )
+function Store() {
+  return (
+    <Container>
+      <h1>Store</h1>
+    </Container>
+  );
 }
 
-export default Store
+export default Store;

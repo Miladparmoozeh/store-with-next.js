@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navar";
+import Layout from "@/components/layout";
 
 export const metadata: Metadata = {
   title: "Stor for all",
@@ -11,8 +12,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}</body>
+        <Layout>{children}</Layout>
+        
+  </body>
     </html>
   );
 }
