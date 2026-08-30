@@ -13,8 +13,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="en">
       <body>
         <Layout>{children}</Layout>
-        
-  </body>
+      </body>
     </html>
   );
 }

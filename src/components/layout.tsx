@@ -6,11 +6,12 @@ interface ILayoutProps {
 }
 
 function Layout({ children }: ILayoutProps) {
-  return(
-  <div>
-    <Navbar />
-    {children}
-    </div>) ;
+  return (
+    <div>
+      <Navbar />
+      {children}
+    </div>
+  );
 }
 
 export default Layout;
