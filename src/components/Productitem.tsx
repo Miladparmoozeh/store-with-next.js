@@ -1,3 +1,5 @@
+
+
 interface IProductItemProps {
   id: string;
   image: string;
@@ -14,7 +16,7 @@ const Productitem = ({image,price,title}: IProductItemProps) => {
       <div className="p-2 text-right rtl">
         <h3 className="font-bold"> {title} </h3>
         <p>
-          قیمت: <span> ${price} </span>
+          قیمت: <span>${price} </span>
         </p>
       </div>
     </div>

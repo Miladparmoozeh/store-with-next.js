@@ -1,5 +1,6 @@
 import Container from "@/components/container";
 import Productitem from "@/components/Productitem";
+import Link from "next/link";
 import React from "react";
 
 function Store() {
@@ -52,7 +53,9 @@ function Store() {
 
       <div className="grid grid-cols-4 gap-4 ">
         {data.map((item) => (
-          <Productitem key={item.id} {...item} />
+         <Link key={item.id} href={`/store/${item.id}`}>
+           <Productitem  {...item} />
+         </Link>
         ))}
       </div>
     </Container>
