@@ -1,8 +1,22 @@
 
 import Container from '@/components/container'
+import { IProductItemProps } from '@/components/Productitem'
 import React from 'react'
 
-function Product() {
+interface IProductProps{
+    params: Promise<{id: string}>;
+    seaechParams: Promise<{}>
+}
+
+async function Product({params}: IProductProps) {
+
+    const {id} = await params
+
+
+    const result= await fetch (`http://localhost:3004/products/${id}`)
+    const data = await result.json() as IProductItemProps
+
+
   return (
     <Container>
 
@@ -10,11 +24,11 @@ function Product() {
 
             <div className='col-span-9  rtl text-right p-4 '>
 
-                <h2 className='font-bold text-2xl'> محصول اول </h2>
+                <h2 className='font-bold text-2xl'> {data.title}</h2>
 
-                <p className='text-gray-600 '> مهم تغلئذ اعننا منتهتمهت منتا کخهخاتغتلت نعغهعنعغ نهغنعا </p>
+                <p className='text-gray-600 '> {data.description}</p>
 
-                <p className='font-bold '> قیمت: <span>23$</span> </p>
+                <p className='font-bold '> قیمت: <span>{data.price}$</span> </p>
 
                 <div className='mt-4'>
                     <button className='px-4 py-2 bg-sky-500 text-with rounded text-white' >+</button>
@@ -26,7 +40,7 @@ function Product() {
 
             <div className='col-span-3 '>
 
-                <img src="https://learn.zoner.com/wp-content/uploads/2025/04/zoner-ai-image-creator.jpg" alt="" />
+                <img src={data.image} alt="" />
 
             </div>
 
