@@ -1,6 +1,6 @@
 
 
-interface IProductItemProps {
+export interface IProductItemProps {
   id: string;
   image: string;
   title: string;
