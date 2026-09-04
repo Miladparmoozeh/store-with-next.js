@@ -1,4 +1,5 @@
 
+import AddToCart from '@/components/AddToCart';
 import Container from '@/components/container'
 import { IProductItemProps } from '@/components/Productitem'
 import React from 'react'
@@ -30,11 +31,7 @@ async function Product({params}: IProductProps) {
 
                 <p className='font-bold '> قیمت: <span>{data.price}$</span> </p>
 
-                <div className='mt-4'>
-                    <button className='px-4 py-2 bg-sky-500 text-with rounded text-white' >+</button>
-                <span className='mx-4'>5</span>
-                <button className='px-4 py-2 bg-sky-500 text-with rounded text-white '>-</button>
-                </div>
+                <AddToCart />
 
             </div>
 
