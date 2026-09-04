@@ -31,7 +31,7 @@ async function Product({params}: IProductProps) {
 
                 <p className='font-bold '> قیمت: <span>{data.price}$</span> </p>
 
-                <AddToCart />
+                <AddToCart id={id}/>
 
             </div>
 
