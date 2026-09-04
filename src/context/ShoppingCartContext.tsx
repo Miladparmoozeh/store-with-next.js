@@ -9,8 +9,11 @@ type CartItems = {
 };
 
 type TShoppingCartContext = {
-    cartItem: CartItems[]
+    cartItems: CartItems[]
     hadleIncreaseProductQty:(id:number)=> void
+    getProductQty:(id:number)=>number
+    cartTotalQty:number
+    
 };
 
 const ShoppingCartContext = createContext({} as TShoppingCartContext);
@@ -25,12 +28,20 @@ export const useShoppingCartContext = ()=>{
 export function ShoppingCartContextProvider({
   children,
 }: ShoppingCartContextProviderProps) {
-  const [cartItem, setCartItem] = useState<CartItems[]>([]);
+  const [cartItems, setCartItems] = useState<CartItems[]>([]);
 
+  const cartTotalQty=cartItems.reduce((totalQty,item)=>{
+    return totalQty+item.qty
+
+  },0)
+
+  const getProductQty= (id:number)=>{
+    return cartItems.find(item=>item.id==id)?.qty || 0
+  }
 
   const hadleIncreaseProductQty=(id : number)=>{
 
-    setCartItem(currentItem=>{
+    setCartItems(currentItem=>{
 
 
         let isNotProductExist=currentItem.find(item => item.id == id) == null
@@ -58,7 +69,7 @@ export function ShoppingCartContextProvider({
   }
 
   return (
-    <ShoppingCartContext.Provider value={{ cartItem ,hadleIncreaseProductQty}}>
+    <ShoppingCartContext.Provider value={{ cartItems ,hadleIncreaseProductQty, getProductQty,cartTotalQty}}>
       {children}
     </ShoppingCartContext.Provider>
   );
