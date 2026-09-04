@@ -13,6 +13,8 @@ type TShoppingCartContext = {
     hadleIncreaseProductQty:(id:number)=> void
     getProductQty:(id:number)=>number
     cartTotalQty:number
+    handleDecreaseProductqty:(id:number)=> void
+    handleRemoveProduct:(id:number)=>void
     
 };
 
@@ -41,17 +43,17 @@ export function ShoppingCartContextProvider({
 
   const hadleIncreaseProductQty=(id : number)=>{
 
-    setCartItems(currentItem=>{
+    setCartItems(currentItems=>{
 
 
-        let isNotProductExist=currentItem.find(item => item.id == id) == null
+        let isNotProductExist=currentItems.find(item => item.id == id) == null
 
         if(isNotProductExist){
-            return[...currentItem, {id:id,qty:1}]
+            return[...currentItems, {id:id,qty:1}]
         }
 
         else{
-            return currentItem.map(item=>{
+            return currentItems.map(item=>{
                 if(item.id== id){
                     return{
                         ...item, 
@@ -68,8 +70,36 @@ export function ShoppingCartContextProvider({
 
   }
 
+  const handleDecreaseProductqty=(id: number)=>{
+    setCartItems(currentItems=>{
+      let isLastOne = currentItems.find(item=>item.id==id)?.qty==1
+      if (isLastOne){
+        return currentItems.filter(item=> item.id!=id)
+      }else{
+        return currentItems.map(item=>{
+          if(item.id==id){
+            return{
+              ...item,qty:item.qty-1,
+            }
+          }else{
+            return item
+          }
+        })
+      }
+    })
+
+  }
+
+
+  const handleRemoveProduct=(id:number)=>{
+    setCartItems(currentItems=>{
+      return currentItems.filter(item=>item.id!=id)
+    })
+
+  }
+
   return (
-    <ShoppingCartContext.Provider value={{ cartItems ,hadleIncreaseProductQty, getProductQty,cartTotalQty}}>
+    <ShoppingCartContext.Provider value={{ cartItems ,hadleIncreaseProductQty, getProductQty,cartTotalQty,handleDecreaseProductqty,handleRemoveProduct}}>
       {children}
     </ShoppingCartContext.Provider>
   );
