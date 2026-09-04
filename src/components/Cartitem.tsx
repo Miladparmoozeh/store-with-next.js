@@ -1,33 +1,44 @@
-import React from "react";
+import axios from "axios";
+import { log } from "console";
+import React, { useEffect, useState } from "react";
+import { IProductItemProps } from "./Productitem";
+import AddToCart from "./AddToCart";
+import { formatNumberWithCommas } from "./utils/number";
+interface ICartItemProps{
+  id:number
+  qty:number
+}
+function Cartitem({id,qty}:ICartItemProps) {
 
-function Cartitem() {
+  const [data, setData] = useState({} as IProductItemProps);
+
+  useEffect(()=>{
+    axios(`http://localhost:3004/products/${id}`).then(result=>{
+      const{data}= result
+      setData(data)
+     
+      
+    })
+  },[])
   return (
     <div className="grid grid-cols-12 bg-slate-100 mb-4">
         <div className="col-span-10 text-right px-4 ">
-            <h2 className="text-xl font-bold"> اسم محصول </h2>
+            <h2 className="text-xl font-bold"> {data.title} </h2>
             <p>
               
-              تعداد: <span>3</span>
+              تعداد: <span>{qty}</span>
             </p>
             <p className="rtl">
               
-              قیمت محصول: <span>44$</span>
+              قیمت محصول: <span>{formatNumberWithCommas (data.price ?? 0)}$</span>
             </p>
 
-            <div className="mt-2">
-              <button className="px-4 py-1 bg-sky-500 text-with rounded text-white">
-                +
-              </button>
-              <span className="mx-4">5</span>
-              <button className="px-4 py-1 bg-sky-500 text-with rounded text-white ">
-                -
-              </button>
-            </div>
+            <AddToCart id={id.toString()} />
         </div>
 
         <img
             className="col-span-2"
-            src="https://learn.zoner.com/wp-content/uploads/2025/04/zoner-ai-image-creator.jpg"
+            src={data.image}
             alt=""
         />
     </div>
