@@ -30,9 +30,9 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className=" min-h-screen bg-linear-to-br form-pink-200 via-red-300 to-sky-200 flex  items-center justify-center p-6">
       <Container>
-        <div className="border p-4 flex flex-col w-70 mx-auto">
+        <div className=" ml-120 mb-100 w-full max-w-md rounded-3xl bg-whith/70 backdrop-blur-xl shadow-2xl border border-white/40 p-8 ">
           <input
             onChange={(e) => setUserName(e.target.value)}
             className="mt-2"
