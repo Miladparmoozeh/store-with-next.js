@@ -39,10 +39,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="bg-amber-400 p-4 text-right rtl ">
+    <div className=" bg-linear-to-br form-pink-200 via-red-300 to-sky-200   p-6 ">
       <Container>
-        <div className="grid grid-cols-3 gap-4">
-          <input 
+        <div className="flex flex-col-3 rtl">
+          <input
             onChange={handleChangeProduct}
             name="title"
             type="text"
@@ -61,20 +61,23 @@ const Dashboard = () => {
             placeholder="عکس"
           />
         </div>
+
         <textarea
           onChange={handleChangeProduct}
           name="description"
-          className="w-full mt-4"
+          className="w-full mt-4 rtl border rounded"
           placeholder="توضیحات"
         ></textarea>
 
-        <button
+        <div className="rtl">
+          <button
           onClick={handleCreateProduct}
-          className="bg-sky-500 text-white rounded px-4 py-1"
+          className="bg-sky-500 text-white rounded px-4 py-1 rtl"
         >
           {" "}
           ساخت محصول جدید{" "}
         </button>
+        </div>
       </Container>
     </div>
   );
